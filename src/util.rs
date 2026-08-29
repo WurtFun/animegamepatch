@@ -116,7 +116,7 @@ pub unsafe fn pattern_scan_il2cpp(module: &str, pattern: &str) -> Option<*mut u8
     });
     
     if il2cpp_section.is_none() {
-        println!("Failed to find il2cpp section");
+        crate::plog!("Failed to find il2cpp section");
         return None;
     }
     

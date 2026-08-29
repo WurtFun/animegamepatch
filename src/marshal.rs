@@ -23,9 +23,9 @@ pub unsafe fn find() {
     if let Some(addr) = ptr_to_string_ansi {
         let addr_offset = addr as usize + PTR_TO_STRING_ANSI_OFFSET;
         PTR_TO_STRING_ANSI_ADDR = Some(addr_offset);
-        println!("ptr_to_string_ansi: {:x}", addr_offset);
+        crate::plog!("ptr_to_string_ansi: {:x}", addr_offset);
     } else {
-        println!("Failed to find ptr_to_string_ansi");
+        crate::plog!("Failed to find ptr_to_string_ansi");
     }
 }
 
