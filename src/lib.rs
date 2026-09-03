@@ -21,7 +21,7 @@ unsafe fn thread_func() {
     let mut module_manager = MODULE_MANAGER.write().unwrap();
 
     // Block query_security_file ASAP
-    module_manager.enable(MhyContext::<CcpBlocker>::new(""));
+    //module_manager.enable(MhyContext::<CcpBlocker>::new(""));
 
     util::disable_memprotect_guard();
     Console::AllocConsole().unwrap();
