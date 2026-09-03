@@ -5,12 +5,14 @@ use anyhow::Result;
 use crate::interceptor::Interceptor;
 
 mod ccp_blocker;
+mod curl;
 mod http;
 mod misc;
 mod security;
 mod winhttp;
 
 pub use ccp_blocker::CcpBlocker;
+pub use curl::Curl;
 pub use http::Http;
 pub use misc::Misc;
 pub use security::Security;
@@ -46,6 +48,7 @@ pub enum ModuleType {
     Security,
     Misc,
     CcpBlocker,
+    Curl,
     WinHttp,
 }
 

@@ -19,6 +19,7 @@ use windows::{
 use super::{MhyContext, MhyModule, ModuleType};
 
 const CURL_URL: u32 = 10002;
+const CURL_PROXY: u32 = 10004;
 const DISPATCH_HOSTS: [&str; 2] = [
     "dispatchcnglobal.yuanshen.com",
     "dispatchosglobal.yuanshen.com",
@@ -60,7 +61,7 @@ impl MhyModule for MhyContext<Curl> {
             return Ok(());
         }
 
-        crate::plog!("curl_easy_setopt: no loaded libcurl export found; curl redirect disabled");
+        crate::plog!("curl_easy_setopt: no loaded libcurl export found; curl redirect disabled (the game may load/use libcurl later or link it statically)");
         Ok(())
     }
 

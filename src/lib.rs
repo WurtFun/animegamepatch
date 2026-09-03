@@ -1,7 +1,7 @@
 use std::{sync::RwLock};
 
 use lazy_static::lazy_static;
-use modules::{CcpBlocker, Misc};
+use modules::{CcpBlocker, Curl, Misc};
 use windows::Win32::System::Console;
 use windows::Win32::System::SystemServices::DLL_PROCESS_ATTACH;
 use windows::Win32::{Foundation::HINSTANCE, System::LibraryLoader::GetModuleFileNameA};
@@ -49,6 +49,10 @@ unsafe fn thread_func() {
 
     // the account sdk uses winhttp, not the C# path above
     module_manager.enable(MhyContext::<WinHttp>::new(&exe_name));
+
+    // Hook libcurl when it is already loaded. The module also logs whether
+    // the export was found, which is useful for diagnosing SDK request paths.
+    module_manager.enable(MhyContext::<Curl>::new(&exe_name));
 
     crate::plog!("Successfully initialized!");
 }
