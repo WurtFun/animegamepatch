@@ -1,0 +1,32 @@
+name: Build Patch
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: stable
+          target: x86_64-pc-windows-msvc
+
+      - name: Build
+        run: cargo build --release
+
+      - name: Upload DLL
+        uses: actions/upload-artifact@v4
+        with:
+          name: Astrolabe
+          path: target/release/*.dll
