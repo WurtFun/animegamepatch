@@ -1,5 +1,3 @@
-#![feature(str_from_utf16_endian)]
-
 use std::{sync::RwLock};
 
 use lazy_static::lazy_static;
